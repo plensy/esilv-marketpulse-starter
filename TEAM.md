@@ -5,22 +5,22 @@ Copy this file to `TEAM.md` in your team repository and complete it before start
 ## Course
 
 - Module: MESIFI472326 - Python, Git, Linux
-- TD Group: GXX
-- MarketPulse Team: TXX
+- TD Group: G03
+- MarketPulse Team: T07
 
 ## Members
 
 | Full name | GitHub username |
 |---|---|
-| Student 1 | @github-user-1 |
-| Student 2 | @github-user-2 |
-| Student 3 | @github-user-3 |
+| Enrique Jara-Ron | Enrique-JaraRon |
+| Rudy Jabbour | rudyyj |
+| Mathis Henry | Mathis2103 |
 
-Add a fourth row only if your team has four members.
+
 
 ## Repository
 
-- Team repository: `esilv-marketpulse-gXX-tYY`
+- Team repository: `esilv-marketpulse-g03-t07`
 - Upstream repository: `tawounfouet/esilv-marketpulse`
 
 ## Market choice
