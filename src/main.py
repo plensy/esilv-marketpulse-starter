@@ -21,14 +21,32 @@ def load_prices():
     with open(DATA_DIR / "prices.csv", encoding="utf-8") as file:
         return list(csv.DictReader(file))
 
+def get_first_date(prices):
+    return prices[0]["date"]
+
+def get_last_date(prices):
+    return prices[-1]["date"]
+
 
 def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
+
+def get_first_close():
+    with open(DATA_DIR / "prices.csv", encoding="utf-8") as file:
+        prices= list(csv.DictReader(file))    
+        print(float(prices[0]["close"]))
+
+
+
+
+
+
 
 
 def main():
     instruments = load_instruments()
     prices = load_prices()
+    first = get_first_close()
 
     instrument = instruments["instrument"]
     benchmark = instruments["benchmark"]
@@ -43,19 +61,30 @@ def main():
     print()
     print("Instrument")
     print(f"{instrument['ticker']} - {instrument['name']}")
+    print(f"Market: {instrument['market']}")
     print(f"Last price: {instrument_latest['close']} {instrument['currency']}")
     print()
     print("Benchmark")
     print(f"{benchmark['ticker']} - {benchmark['name']}")
+    print(f"Market: {benchmark['market']}")
     print(f"Last level: {benchmark_latest['close']}")
     print()
     print(f"Period: {LOOKBACK_LABEL}")
     print(f"Interval: {INTERVAL_LABEL}")
     print()
-    print("Observations")
-    print(f"{instrument['ticker']}: {len(instrument_prices)}")
-    print(f"{benchmark['ticker']}: {len(benchmark_prices)}")
+    print("==Observations==")
+    print(f"Instrument Observations : {instrument['ticker']}: {len(instrument_prices)}")
+    print(f"Benchmark Observations : {benchmark['ticker']}: {len(benchmark_prices)}")
+    print()
+    print("==Observation dates==")
+    print(f"{instrument['ticker']}: {get_first_date(instrument_prices)} -> {get_last_date(instrument_prices)}")
+    print(f"{benchmark['ticker']}: {get_first_date(benchmark_prices)} -> {get_last_date(benchmark_prices)}")
+
+def get_first_date(prices):
+    return prices[0]["date"]
 
 
+def get_last_date(prices):
+    return prices[-1]["date"]
 if __name__ == "__main__":
     main()
