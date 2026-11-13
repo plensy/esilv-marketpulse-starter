@@ -475,3 +475,12 @@ This README intentionally does not display CI, security, release or license badg
 **Course:** MESIFI472326 - Python, Git, Linux  
 **School:** ESILV - A4  
 **Use case:** MarketPulse - Multi-Source Financial Market Data Dashboard
+## How to run
+
+From the repository root, run:
+
+```bash
+python src/main.py
+```
+
+The program prints a short MarketPulse summary for the instrument (AAPL) and its benchmark (SP500): first and last dates, last price or level, the period, the interval and the number of observations.
