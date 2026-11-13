@@ -1,0 +1,197 @@
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $  python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git --version
+git version 2.56.0
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git config user.name
+ecetere
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git config user.email
+esther.le_roi@edu.devinci.fr
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git status
+On branch esther
+Your branch is up to date with 'origin/esther'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   src/main.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git diff
+diff --git a/src/main.py b/src/main.py
+index 884b045..c76d64b 100644
+--- a/src/main.py
++++ b/src/main.py
+@@ -26,6 +26,25 @@ def filter_prices(prices, ticker):
+     return [row for row in prices if row["ticker"] == ticker]
+ 
+ 
++def get_first_close(prices):
++    return float(prices[0]["close"])
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git status
+On branch esther
+Your branch is up to date with 'origin/esther'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   src/main.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git status --short
+ M src/main.py
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git diff 
+diff --git a/src/main.py b/src/main.py
+index 884b045..c76d64b 100644
+--- a/src/main.py
++++ b/src/main.py
+@@ -26,6 +26,25 @@ def filter_prices(prices, ticker):
+     return [row for row in prices if row["ticker"] == ticker]
+ 
+ 
++def get_first_close(prices):
++    return float(prices[0]["close"])
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git add src/main.py
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git add
+Nothing specified, nothing added.
+hint: Maybe you wanted to say 'git add .'?
+hint: Disable this message with "git config set advice.addEmptyPathspec false"
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git add . 
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git status
+On branch esther
+Your branch is up to date with 'origin/esther'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   src/main.py
+
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git diff --staged
+diff --git a/src/main.py b/src/main.py
+index 884b045..c76d64b 100644
+--- a/src/main.py
++++ b/src/main.py
+@@ -26,6 +26,25 @@ def filter_prices(prices, ticker):
+     return [row for row in prices if row["ticker"] == ticker]
+ 
+ 
++def get_first_close(prices):
++    return float(prices[0]["close"])
+:...skipping...
+diff --git a/src/main.py b/src/main.py
+index 884b045..c76d64b 100644
+--- a/src/main.py
++++ b/src/main.py
+@@ -26,6 +26,25 @@ def filter_prices(prices, ticker):
+     return [row for row in prices if row["ticker"] == ticker]
+ 
+ 
++def get_first_close(prices):
++    return float(prices[0]["close"])
++
++
++def get_last_close(prices):
++    return float(prices[-1]["close"])
++
++
++def display_market_summary(asset, prices, show_currency=True):
++    currency = ""
++    if show_currency:
++        currency = " " + asset["currency"]
++
++    print(f"{asset['ticker']} - {asset['name']}")
++    print(f"Observations : {len(prices)}")
++    print(f"First close  : {get_first_close(prices):.2f}{currency}")
++    print(f"Last close   : {get_last_close(prices):.2f}{currency}")
++
++
+ def main():
+     instruments = load_instruments()
+     prices = load_prices()
+@@ -36,26 +55,18 @@ def main():
+     instrument_prices = filter_prices(prices, instrument["ticker"])
+     benchmark_prices = filter_prices(prices, benchmark["ticker"])
+ 
+-    instrument_latest = instrument_prices[-1]
+-    benchmark_latest = benchmark_prices[-1]
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git commit -m "feat : improve marketpulse market summary"
+[esther 187173d] feat : improve marketpulse market summary
+ 1 file changed, 26 insertions(+), 15 deletions(-)
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git status
+On branch esther
+Your branch is ahead of 'origin/esther' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git log --oneline
+187173d (HEAD -> esther) feat : improve marketpulse market summary
+f7a374c (origin/esther) Merge branch 'plensy:main' into esther
+c388ccd Add files via upload
+a456f76 Ajout des preuves TD01 et TD02
+981664e Ajout du fichier TEAM.md
+5207db8 (origin/leopold) first td session
+ba5c9f4 Update Readme
+9fd6c8a Update Readme
+bfb94a6 init projecttemplate
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git show HEAD
+commit 187173d9d1ea432195890627a9560e75e2294146 (HEAD -> esther)
+Author: ecetere <esther.le_roi@edu.devinci.fr>
+Date:   Fri Nov 13 16:32:12 2026 +0000
+
+    feat : improve marketpulse market summary
+
+diff --git a/src/main.py b/src/main.py
+index 884b045..c76d64b 100644
+--- a/src/main.py
++++ b/src/main.py
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ 
