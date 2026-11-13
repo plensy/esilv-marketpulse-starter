@@ -2,7 +2,7 @@ from pathlib import Path
 import csv
 import json
 
-
+# test diff commentaire
 DATA_DIR = Path("data/sample")
 
 # These starter values mirror config/settings.yml.
@@ -25,6 +25,12 @@ def load_prices():
 def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
 
+def get_first_date(prices):
+    return prices[0]["date"]
+
+
+def get_last_date(prices):
+    return prices[-1]["date"]
 
 def main():
     instruments = load_instruments()
