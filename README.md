@@ -469,6 +469,32 @@ Such supports are not activated as student exercises until their real delivery g
 
 This README intentionally does not display CI, security, release or license badges because those contracts are not present in the CORE repository.
 
+(base) daphnecortesse@MacBook-Air-de-Daphne MarketPulse-TD05-Daphne % python3 src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+(base) daphnecortesse@MacBook-Air-de-Daphne MarketPulse-TD05-Daphne % git log --oneline -3
+53fcfee (HEAD -> docs/clarify-project-execution, origin/main, origin/HEAD, main) docs: identify team members for shared TD05 baseline
+3d8661d (origin/Baptiste) docs: add TD04 report and checkpoint A screenshots
+e14fcfc docs: prepare Baptiste checkpoint A evidence guide
 
 ---
 
