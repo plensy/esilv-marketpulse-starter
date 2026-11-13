@@ -45,6 +45,7 @@ def main():
     instrument_latest = instrument_prices[-1]
     benchmark_latest = benchmark_prices[-1]
 
+
     print("=== MarketPulse ===")
     print()
     print("Instrument")
@@ -61,6 +62,8 @@ def main():
     print("Observations")
     print(f"{instrument['ticker']}: {len(instrument_prices)}")
     print(f"{benchmark['ticker']}: {len(benchmark_prices)}")
+    print(f"First date   : {get_first_date(instrument_prices)}")
+    print(f"Last date    : {get_last_date(instrument_prices)}")
 
 
 if __name__ == "__main__":
