@@ -2,7 +2,7 @@ from pathlib import Path
 import csv
 import json
 
-
+# test diff commentaire
 DATA_DIR = Path("data/sample")
 
 # These starter values mirror config/settings.yml.
@@ -25,6 +25,12 @@ def load_prices():
 def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
 
+def get_first_date(prices):
+    return prices[0]["date"]
+
+
+def get_last_date(prices):
+    return prices[-1]["date"]
 
 def main():
     instruments = load_instruments()
@@ -38,6 +44,7 @@ def main():
 
     instrument_latest = instrument_prices[-1]
     benchmark_latest = benchmark_prices[-1]
+
 
     print("=== MarketPulse ===")
     print()
@@ -55,6 +62,8 @@ def main():
     print("Observations")
     print(f"{instrument['ticker']}: {len(instrument_prices)}")
     print(f"{benchmark['ticker']}: {len(benchmark_prices)}")
+    print(f"First date   : {get_first_date(instrument_prices)}")
+    print(f"Last date    : {get_last_date(instrument_prices)}")
 
 
 if __name__ == "__main__":
