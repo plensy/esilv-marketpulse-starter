@@ -475,3 +475,12 @@ This README intentionally does not display CI, security, release or license badg
 **Course:** MESIFI472326 - Python, Git, Linux  
 **School:** ESILV - A4  
 **Use case:** MarketPulse - Multi-Source Financial Market Data Dashboard
+
+## How to run
+
+1. Install dependencies: pip install -r requirements.txt (if applicable)
+2. From the repo root, run:
+   bash
+   python src/main.py
+   
+3. The script prints a MarketPulse summary for the configured instrument and benchmark.
