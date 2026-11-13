@@ -1,15 +1,23 @@
 from pathlib import Path
 import csv
 import json
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from src.analytics import (
+    align_series,
+    calculate_period_return,
+    calculate_base_100,
+    calculate_relative_performance,
+)
 
 
 DATA_DIR = Path("data/sample")
 
-# These starter values mirror config/settings.yml.
-# settings.yml is a human-readable configuration contract in the CORE.
-# Parsing YAML is optional and is not required by the 18-hour lab sequence.
 LOOKBACK_LABEL = "1 month"
 INTERVAL_LABEL = "Daily"
+PROVIDER_LABEL = "CSV"
 
 
 def load_instruments():
@@ -24,6 +32,14 @@ def load_prices():
 
 def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
+
+
+def get_first_date(prices):
+    return prices[0]["date"]
+
+
+def get_last_date(prices):
+    return prices[-1]["date"]
 
 
 def main():
@@ -41,20 +57,49 @@ def main():
 
     print("=== MarketPulse ===")
     print()
+
     print("Instrument")
     print(f"{instrument['ticker']} - {instrument['name']}")
-    print(f"Last price: {instrument_latest['close']} {instrument['currency']}")
+    print(f"Market       : {instrument.get('market', 'N/A')}")
+    print(f"Observations : {len(instrument_prices)}")
+    print(f"First date   : {get_first_date(instrument_prices)}")
+    print(f"Last date    : {get_last_date(instrument_prices)}")
+    print(f"First close  : {instrument_prices[0]['close']} {instrument['currency']}")
+    print(f"Last close   : {instrument_latest['close']} {instrument['currency']}")
     print()
+
     print("Benchmark")
     print(f"{benchmark['ticker']} - {benchmark['name']}")
-    print(f"Last level: {benchmark_latest['close']}")
+    print(f"Market       : {benchmark.get('market', 'N/A')}")
+    print(f"Observations : {len(benchmark_prices)}")
+    print(f"First date   : {get_first_date(benchmark_prices)}")
+    print(f"Last date    : {get_last_date(benchmark_prices)}")
+    print(f"First close  : {benchmark_prices[0]['close']}")
+    print(f"Last close   : {benchmark_latest['close']}")
     print()
+
     print(f"Period: {LOOKBACK_LABEL}")
     print(f"Interval: {INTERVAL_LABEL}")
+    print(f"Provider: {PROVIDER_LABEL}")
     print()
-    print("Observations")
-    print(f"{instrument['ticker']}: {len(instrument_prices)}")
-    print(f"{benchmark['ticker']}: {len(benchmark_prices)}")
+
+    aligned_instrument, aligned_benchmark = align_series(instrument_prices, benchmark_prices)
+    instrument_return = calculate_period_return(aligned_instrument)
+    benchmark_return = calculate_period_return(aligned_benchmark)
+    relative_performance = calculate_relative_performance(instrument_return, benchmark_return)
+    instrument_base_100 = calculate_base_100(aligned_instrument)
+    benchmark_base_100 = calculate_base_100(aligned_benchmark)
+
+    print("Comparison (aligned)")
+    print(f"Aligned sessions     : {len(aligned_instrument)}")
+    print(f"{instrument['ticker']} period return  : {instrument_return:+.2f}%")
+    print(f"{benchmark['ticker']} period return : {benchmark_return:+.2f}%")
+    print(f"Relative performance : {relative_performance:+.2f} percentage points")
+    print()
+
+    print("Base 100")
+    print(f"{instrument['ticker']}  : {instrument_base_100[0]['value']:.2f} -> {instrument_base_100[-1]['value']:.2f}")
+    print(f"{benchmark['ticker']} : {benchmark_base_100[0]['value']:.2f} -> {benchmark_base_100[-1]['value']:.2f}")
 
 
 if __name__ == "__main__":
