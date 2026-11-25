@@ -204,6 +204,22 @@ These are the two canonical CORE runtime commands.
 
 The instructor starter repository does not necessarily contain every later-stage student file on day one. Files appear progressively during the lab sequence.
 
+
+### Quick start for TD05
+
+To run MarketPulse, open a terminal from the main project folder and use:
+
+```bash
+python src/main.py
+```
+
+The program displays the instrument (AAPL), the benchmark (SP500), the period, the interval and the number of observations.
+
+At this stage, the program uses sample data, so we don't need an API key or extra Python packages.
+
+If the command does not work because the file cannot be found, check that the terminal is opened in the correct project folder.
+
+
 ## Installation
 
 The starter TD01-TD02 path uses only the Python standard library.

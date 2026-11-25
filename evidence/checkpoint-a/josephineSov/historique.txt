@@ -1,0 +1,79 @@
+Historique Git - josephineSov - branche josephineSauve
+Dépôt : esilv-marketpulse-g02-t01
+Point de départ : c388ccd (main de l'équipe)
+
+== Graphe ==
+* 27575ca (HEAD -> josephineSauve, origin/josephineSauve) docs: add checkpoint A evidence screenshots
+* cf489fd docs: add checkpoint A evidence README
+* cbb859a docs: add TD01-TD04 notes
+* d9733cf feat: display first and last observation dates
+* f36def6 docs: add TEAM.md for team G02-T01
+* de434eb refactor: reuse market summary display
+* c388ccd (origin/main, origin/HEAD, main) Add files via upload
+
+== Correspondance avec les TD ==
+TD01 : exploration du dépôt et des données (pwd, ls, cd, cat, head, grep), TEAM.md -> f36def6
+TD02 : first/last close + display_market_summary réutilisable (laissé non commité)
+TD03 : commit du travail du TD02 après status / diff / add / diff --staged -> de434eb
+TD04 : branche feature/display-observation-dates, commit d9733cf, merge fast-forward
+Checkpoint A : notes cbb859a, README cf489fd, captures 27575ca
+
+== Détail des commits (ordre chronologique) ==
+
+commit de434eb
+Auteur : josephineSov
+Date   : 2026-11-20 17:27
+Message: refactor: reuse market summary display
+
+ src/main.py | 39 +++++++++++++++++++++++++--------------
+ 1 file changed, 25 insertions(+), 14 deletions(-)
+
+commit f36def6
+Auteur : josephineSov
+Date   : 2026-11-20 17:27
+Message: docs: add TEAM.md for team G02-T01
+
+ TEAM.md | 41 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+commit d9733cf
+Auteur : josephineSov
+Date   : 2026-11-20 17:27
+Message: feat: display first and last observation dates
+
+ src/main.py | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit cbb859a
+Auteur : josephineSov
+Date   : 2026-11-20 17:28
+Message: docs: add TD01-TD04 notes
+
+ notes/josephineSauve/TD01.md | 85 ++++++++++++++++++++++++++++++++++++++++++++
+ notes/josephineSauve/TD02.md | 57 +++++++++++++++++++++++++++++
+ notes/josephineSauve/TD03.md | 32 +++++++++++++++++
+ notes/josephineSauve/TD04.md | 62 ++++++++++++++++++++++++++++++++
+ 4 files changed, 236 insertions(+)
+
+commit cf489fd
+Auteur : josephineSov
+Date   : 2026-11-20 17:28
+Message: docs: add checkpoint A evidence README
+
+ evidence/checkpoint-a/josephineSov/README.md | 47 ++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+
+commit 27575ca
+Auteur : josephineSov
+Date   : 2026-11-20 17:46
+Message: docs: add checkpoint A evidence screenshots
+
+ .../checkpoint-a/josephineSov/01_terminal_python.png   | Bin 0 -> 147309 bytes
+ .../checkpoint-a/josephineSov/02_git_status_log.png    | Bin 0 -> 103387 bytes
+ evidence/checkpoint-a/josephineSov/03_branch_merge.png | Bin 0 -> 140026 bytes
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+== Branche feature du TD04 ==
+feature/display-observation-dates : créée depuis josephineSauve (f36def6),
+commit d9733cf, fusionnée en fast-forward dans josephineSauve,
+puis supprimée avec git branch -d après la capture 03_branch_merge.png.
