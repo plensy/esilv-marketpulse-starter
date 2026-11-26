@@ -1,0 +1,734 @@
+Windows PowerShell 5.1
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git status
+On branch esther
+Your branch is up to date with 'origin/esther'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   src/main.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        evidence/TD1_TD2_reponse.pdf
+        labs/.ipynb_checkpoints/
+        labs/TD1_reponse.odt
+        labs/TEAM.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> ls
+
+
+    Directory: C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        07/10/2026     17:55                config
+d-----        07/10/2026     17:55                data
+d-----        07/10/2026     19:52                evidence
+d-----        13/11/2026     17:15                labs
+d-----        07/10/2026     17:55                readiness
+d-----        07/10/2026     17:55                src
+-a----        07/10/2026     17:55            199 .gitignore
+-a----        07/10/2026     17:55           3126 CONTRIBUTING.md
+-a----        07/10/2026     17:55          10747 README.md
+-a----        07/10/2026     17:55            135 requirements.txt
+-a----        07/10/2026     18:40           1537 TEAM.md
+-a----        07/10/2026     17:55           1508 TEAM_TEMPLATE.md
+
+
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git diff src/main.py
+diff --git a/src/main.py b/src/main.py
+index 884b045..c3ac867 100644
+--- a/src/main.py
++++ b/src/main.py
+@@ -28,6 +28,8 @@ def filter_prices(prices, ticker):
+
+ def main():
+     instruments = load_instruments()
++    print(type(instruments))
++    print(instruments.keys())
+     prices = load_prices()
+
+     instrument = instruments["instrument"]
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git restore src/main.py
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git pull
+remote: Enumerating objects: 156, done.
+remote: Counting objects: 100% (71/71), done.
+remote: Compressing objects: 100% (35/35), done.
+remote: Total 156 (delta 53), reused 40 (delta 35), pack-reused 85 (from 2)
+Receiving objects: 100% (156/156), 8.73 MiB | 12.21 MiB/s, done.
+Resolving deltas: 100% (56/56), completed with 1 local object.
+From https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders
+   5207db8..9250127  main          -> origin/main
+ * [new branch]      branchemaelys -> origin/branchemaelys
+   981664e..abd5e87  esther        -> origin/esther
+ * [new branch]      jeanne        -> origin/jeanne
+ * [new branch]      leopold       -> origin/leopold
+Updating 5207db8..9250127
+Fast-forward
+ RenduTP/.gitkeep                                   |   0
+ .../RenduTP_maelys/Lab TD3 python git linux.docx   | Bin 0 -> 2064095 bytes
+ RenduTP/RenduTP_maelys/TD1-2 GitLinuxPython.docx   | Bin 0 -> 1022220 bytes
+ TEAM.md                                            |  63 ++
+ evidence/TD01-02_Leopold_Bach.docx                 | Bin 0 -> 1875013 bytes
+ evidence/ecetere/TD1_TD2_reponse.pdf               | Bin 0 -> 1669439 bytes
+ evidence/ecetere/TD3_terminal.txt                  | 197 +++++
+ evidence/ecetere/TD4_checkpointA.txt               | 425 +++++++++
+ labs/TD04_BRANCHES_AND_MERGE (1).md                | 812 +++++++++++++++++
+ labs/TD05_FORK_AND_PULL_REQUEST.md                 | 907 +++++++++++++++++++
+ labs/TD06_CODE_REVIEW.md                           | 678 ++++++++++++++
+ labs/TD07_DATA_NORMALIZATION_AND_COMPARISON.md     | 912 +++++++++++++++++++
+ labs/TD08_YAHOO_FINANCE.md                         | 976 +++++++++++++++++++++
+ labs/TD09_BLOOMBERG_INTRODUCTION.md                | 788 +++++++++++++++++
+ src/analytics.py                                   |  40 +
+ src/main.py                                        | 115 ++-
+ 16 files changed, 5900 insertions(+), 13 deletions(-)
+ create mode 100644 RenduTP/.gitkeep
+ create mode 100644 RenduTP/RenduTP_maelys/Lab TD3 python git linux.docx
+ create mode 100644 RenduTP/RenduTP_maelys/TD1-2 GitLinuxPython.docx
+ create mode 100644 TEAM.md
+ create mode 100644 evidence/TD01-02_Leopold_Bach.docx
+ create mode 100644 evidence/ecetere/TD1_TD2_reponse.pdf
+ create mode 100644 evidence/ecetere/TD3_terminal.txt
+ create mode 100644 evidence/ecetere/TD4_checkpointA.txt
+ create mode 100644 labs/TD04_BRANCHES_AND_MERGE (1).md
+ create mode 100644 labs/TD05_FORK_AND_PULL_REQUEST.md
+ create mode 100644 labs/TD06_CODE_REVIEW.md
+ create mode 100644 labs/TD07_DATA_NORMALIZATION_AND_COMPARISON.md
+ create mode 100644 labs/TD08_YAHOO_FINANCE.md
+ create mode 100644 labs/TD09_BLOOMBERG_INTRODUCTION.md
+ create mode 100644 src/analytics.py
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git switch -c feature/market-comparison
+Switched to a new branch 'feature/market-comparison'
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> cat src/analytics.py
+def index_by_date(prices):
+    return {row["date"]: row for row in prices}
+
+
+def align_series(instrument_prices, benchmark_prices):
+    instrument_by_date = index_by_date(instrument_prices)
+    benchmark_by_date = index_by_date(benchmark_prices)
+
+    common_dates = sorted(
+        set(instrument_by_date) & set(benchmark_by_date)
+    )
+
+    aligned_instrument = [instrument_by_date[d] for d in common_dates]
+    aligned_benchmark = [benchmark_by_date[d] for d in common_dates]
+
+    return aligned_instrument, aligned_benchmark
+
+
+def calculate_period_return(prices):
+    first_close = prices[0]["close"]
+    last_close = prices[-1]["close"]
+    return (last_close / first_close - 1) * 100
+
+
+def calculate_relative_performance(instrument_return, benchmark_return):
+    return instrument_return - benchmark_return
+
+
+def calculate_base_100(prices):
+    first_close = prices[0]["close"]
+    result = []
+
+    for row in prices:
+        result.append({
+            "date": row["date"],
+            "ticker": row["ticker"],
+            "value": row["close"] / first_close * 100,
+        })
+
+    return result
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> cat src/main.py
+from pathlib import Path
+import csv
+import json
+
+from analytics import (
+    align_series,
+    calculate_base_100,
+    calculate_period_return,
+    calculate_relative_performance,
+)
+
+
+DATA_DIR = Path("data/sample")
+
+# These starter values mirror config/settings.yml.
+# settings.yml is a human-readable configuration contract in the CORE.
+# Parsing YAML is optional and is not required by the 18-hour lab sequence.
+LOOKBACK_LABEL = "1 month"
+INTERVAL_LABEL = "Daily"
+PROVIDER_LABEL = "Sample CSV (data/sample)"
+
+
+def load_instruments():
+    with open(DATA_DIR / "instruments.json", encoding="utf-8") as file:
+        return json.load(file)
+
+
+def load_prices():
+    with open(DATA_DIR / "prices.csv", encoding="utf-8") as file:
+        return list(csv.DictReader(file))
+
+
+def normalize_price_row(row):
+    return {
+        "date": row["date"],
+        "ticker": row["ticker"],
+        "open": float(row["open"]),
+        "high": float(row["high"]),
+        "low": float(row["low"]),
+        "close": float(row["close"]),
+        "volume": int(row["volume"]),
+    }
+
+
+def filter_prices(prices, ticker):
+    return [row for row in prices if row["ticker"] == ticker]
+
+def get_first_date(prices):
+    return prices[0]["date"]
+
+
+def get_last_date(prices):
+    return prices[-1]["date"]
+
+
+def get_first_close(prices):
+    return float(prices[0]["close"])
+
+
+def get_last_close(prices):
+    return float(prices[-1]["close"])
+
+
+def get_first_date(prices):
+    return prices[0]["date"]
+
+
+def get_last_date(prices):
+    return prices[-1]["date"]
+
+
+def display_market_summary(asset, prices, period_return, show_currency=True):
+    currency = ""
+    if show_currency:
+        currency = " " + asset["currency"]
+
+    print(f"{asset['ticker']} - {asset['name']}")
+    print(f"Market        : {asset['market']}")
+    print(f"Observations  : {len(prices)}")
+    print(f"First date    : {get_first_date(prices)}")
+    print(f"Last date     : {get_last_date(prices)}")
+    print(f"First close   : {get_first_close(prices):.2f}{currency}")
+    print(f"Last close    : {get_last_close(prices):.2f}{currency}")
+    print(f"Period return : {period_return:.2f}%")
+
+
+def main():
+    instruments = load_instruments()
+    prices = [normalize_price_row(row) for row in load_prices()]
+
+    instrument = instruments["instrument"]
+    benchmark = instruments["benchmark"]
+
+    instrument_prices = filter_prices(prices, instrument["ticker"])
+    benchmark_prices = filter_prices(prices, benchmark["ticker"])
+
+    aligned_instrument, aligned_benchmark = align_series(
+        instrument_prices,
+        benchmark_prices,
+    )
+
+    instrument_return = calculate_period_return(aligned_instrument)
+    benchmark_return = calculate_period_return(aligned_benchmark)
+    relative = calculate_relative_performance(
+        instrument_return,
+        benchmark_return,
+    )
+
+    instrument_base = calculate_base_100(aligned_instrument)
+    benchmark_base = calculate_base_100(aligned_benchmark)
+
+    print("=== MarketPulse ===")
+    print()
+    print("Market configuration")
+    print(f"Period   : {LOOKBACK_LABEL}")
+    print(f"Interval : {INTERVAL_LABEL}")
+    print(f"Provider : {PROVIDER_LABEL}")
+    print()
+    print("Instrument")
+    display_market_summary(instrument, aligned_instrument, instrument_return)
+    print()
+    print("Benchmark")
+    display_market_summary(
+        benchmark,
+        aligned_benchmark,
+        benchmark_return,
+        show_currency=False,
+    )
+    print()
+    print("Relative performance")
+    print(
+        f"{instrument['ticker']} vs {benchmark['ticker']} : "
+        f"{relative:+.2f} percentage points"
+    )
+    print()
+    print("Base 100")
+    print(
+        f"{instrument['ticker']:<6}: "
+        f"{instrument_base[0]['value']:.2f} -> "
+        f"{instrument_base[-1]['value']:.2f}"
+    )
+    print(
+        f"{benchmark['ticker']:<6}: "
+        f"{benchmark_base[0]['value']:.2f} -> "
+        f"{benchmark_base[-1]['value']:.2f}"
+    )
+
+
+if __name__ == "__main__":
+    main()
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+Provider : Sample CSV (data/sample)
+
+Instrument
+AAPL - Apple Inc.
+Market        : NASDAQ
+Observations  : 21
+First date    : 2026-09-01
+Last date     : 2026-09-30
+First close   : 250.00 USD
+Last close    : 266.20 USD
+Period return : 6.48%
+
+Benchmark
+SP500 - S&P 500
+Market        : US
+Observations  : 21
+First date    : 2026-09-01
+Last date     : 2026-09-30
+First close   : 6600.00
+Last close    : 6742.00
+Period return : 2.15%
+
+Relative performance
+AAPL vs SP500 : +4.33 percentage points
+
+Base 100
+AAPL  : 100.00 -> 106.48
+SP500 : 100.00 -> 102.15
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> code src/main.py
+Program 'code.cmd' failed to run: Access is deniedAt line:1 char:1
++ code src/main.py
++ ~~~~~~~~~~~~~~~~.
+At line:1 char:1
++ code src/main.py
++ ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> code -n .
+Program 'code.cmd' failed to run: Access is deniedAt line:1 char:1
++ code -n .
++ ~~~~~~~~~.
+At line:1 char:1
++ code -n .
++ ~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+Provider : Sample CSV (data/sample)
+
+Instrument
+AAPL - Apple Inc.
+Market        : NASDAQ
+Observations  : 21
+First date    : 2026-09-01
+Last date     : 2026-09-30
+First close   : 250.00 USD
+Last close    : 266.20 USD
+Period return : 6.48%
+
+Benchmark
+SP500 - S&P 500
+Market        : US
+Observations  : 21
+First date    : 2026-09-01
+Last date     : 2026-09-30
+First close   : 6600.00
+Last close    : 6742.00
+Period return : 2.15%
+
+Relative performance
+AAPL vs SP500 : +4.33 percentage points
+
+Base 100
+AAPL  : 100.00 -> 106.48
+SP500 : 100.00 -> 102.15
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git diff
+diff --git a/src/main.py b/src/main.py
+index 050fb87..4816af8 100644
+--- a/src/main.py
++++ b/src/main.py
+@@ -61,14 +61,6 @@ def get_last_close(prices):
+     return float(prices[-1]["close"])
+
+
+-def get_first_date(prices):
+-    return prices[0]["date"]
+-
+-
+-def get_last_date(prices):
+-    return prices[-1]["date"]
+-
+-
+ def display_market_summary(asset, prices, period_return, show_currency=True):
+     currency = ""
+     if show_currency:
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git add src/main.py
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git commit -m "refactor: remove duplicate date helpers in main.py"
+[feature/market-comparison e03b40c] refactor: remove duplicate date helpers in main.py
+ 1 file changed, 8 deletions(-)
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git push -u origin feature/market-comparison
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 393 bytes | 393.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'feature/market-comparison' on GitHub by visiting:
+remote:      https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders/pull/new/feature/market-comparison
+remote:
+To https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders.git
+ * [new branch]      feature/market-comparison -> feature/market-comparison
+branch 'feature/market-comparison' set up to track 'origin/feature/market-comparison'.
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git pull
+remote: Enumerating objects: 25, done.
+remote: Counting objects: 100% (17/17), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 25 (delta 6), reused 10 (delta 6), pack-reused 8 (from 1)
+Unpacking objects: 100% (25/25), 8.04 KiB | 42.00 KiB/s, done.
+From https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders
+   9250127..9f94de8  main                   -> origin/main
+ * [new branch]      feat/td07-comparison-maelys -> origin/feat/td07-comparison-maelys
+ * [new branch]      feature/yahoo-provider -> origin/feature/yahoo-provider
+   d82a3a8..5fa7708  jeanne                 -> origin/jeanne
+Updating 9250127..9f94de8
+Fast-forward
+ .../jeanne/TD01-GitHub-Linux-Jeanne_espinos.pdf    | Bin 0 -> 398810 bytes
+ RenduTP/jeanne/checkpoint-a/01_terminal_python.png | Bin 0 -> 22698 bytes
+ RenduTP/jeanne/checkpoint-a/02_git_status_log.png  | Bin 0 -> 78427 bytes
+ RenduTP/jeanne/checkpoint-a/03_branch_merge.png    | Bin 0 -> 62229 bytes
+ RenduTP/jeanne/checkpoint-a/README.md              |  13 +++++
+ RenduTP/jeanne/td2_jeanne_espinos.pdf              | Bin 0 -> 298113 bytes
+ RenduTP/jeanne/td3_jeanne_espinos.pdf              | Bin 0 -> 335607 bytes
+ RenduTP/jeanne/td4_jeanne_espinos.pdf              | Bin 0 -> 391459 bytes
+ requirements.txt                                   |   1 +
+ src/main.py                                        |  64 ++++++---------------
+ src/providers/__init__.py                          |   0
+ src/providers/yahoo_provider.py                    |  32 +++++++++++
+ 12 files changed, 65 insertions(+), 45 deletions(-)
+ create mode 100644 RenduTP/jeanne/TD01-GitHub-Linux-Jeanne_espinos.pdf
+ create mode 100644 RenduTP/jeanne/checkpoint-a/01_terminal_python.png
+ create mode 100644 RenduTP/jeanne/checkpoint-a/02_git_status_log.png
+ create mode 100644 RenduTP/jeanne/checkpoint-a/03_branch_merge.png
+ create mode 100644 RenduTP/jeanne/checkpoint-a/README.md
+ create mode 100644 RenduTP/jeanne/td2_jeanne_espinos.pdf
+ create mode 100644 RenduTP/jeanne/td3_jeanne_espinos.pdf
+ create mode 100644 RenduTP/jeanne/td4_jeanne_espinos.pdf
+ create mode 100644 src/providers/__init__.py
+ create mode 100644 src/providers/yahoo_provider.py
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> python src/main.py
+Traceback (most recent call last):
+  File "C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders\src\main.py", line 10, in <module>
+    from providers.yahoo_provider import fetch_yahoo_prices
+  File "C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders\src\providers\yahoo_provider.py", line 1, in <module>
+    import yfinance as yf
+ModuleNotFoundError: No module named 'yfinance'
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> python -m pip install -r requirements.txt
+Collecting yfinance (from -r requirements.txt (line 3))
+  Downloading yfinance-1.8.0-py3-none-any.whl.metadata (6.8 kB)
+Collecting beautifulsoup4>=4.11.1 (from yfinance->-r requirements.txt (line 3))
+  Using cached beautifulsoup4-4.15.0-py3-none-any.whl.metadata (3.8 kB)
+Collecting curl_cffi>=0.17 (from yfinance->-r requirements.txt (line 3))
+  Downloading curl_cffi-0.17.0-cp315-abi3.abi3t-win_amd64.whl.metadata (19 kB)
+Collecting lxml>=4.9.0 (from yfinance->-r requirements.txt (line 3))
+  Downloading lxml-6.1.3-cp315-cp315-win_amd64.whl.metadata (3.4 kB)
+Collecting numpy>=1.16.5 (from yfinance->-r requirements.txt (line 3))
+  Downloading numpy-2.5.5-cp315-cp315-win_amd64.whl.metadata (6.6 kB)
+Collecting pandas>=1.3.0 (from yfinance->-r requirements.txt (line 3))
+  Downloading pandas-3.1.1-cp315-cp315-win_amd64.whl.metadata (16 kB)
+Collecting peewee>=3.16.2 (from yfinance->-r requirements.txt (line 3))
+  Downloading peewee-4.5.3-py3-none-any.whl.metadata (10 kB)
+Collecting platformdirs>=2.0.0 (from yfinance->-r requirements.txt (line 3))
+  Using cached platformdirs-4.14.8-py3-none-any.whl.metadata (5.7 kB)
+Collecting protobuf>=3.19.0 (from yfinance->-r requirements.txt (line 3))
+  Downloading protobuf-7.36.2-cp310-abi3-win_amd64.whl.metadata (595 bytes)
+Collecting pytz>=2022.5 (from yfinance->-r requirements.txt (line 3))
+  Using cached pytz-2026.6-py2.py3-none-any.whl.metadata (22 kB)
+Collecting requests>=2.31 (from yfinance->-r requirements.txt (line 3))
+  Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting websockets>=13.0 (from yfinance->-r requirements.txt (line 3))
+  Downloading websockets-17.4-cp315-cp315-win_amd64.whl.metadata (6.5 kB)
+Collecting soupsieve>=1.6.1 (from beautifulsoup4>=4.11.1->yfinance->-r requirements.txt (line 3))
+  Using cached soupsieve-4.1.3-py3-none-any.whl.metadata (4.4 kB)
+Collecting typing-extensions>=4.0.0 (from beautifulsoup4>=4.11.1->yfinance->-r requirements.txt (line 3))
+  Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting cffi>=2.1.1 (from curl_cffi>=0.17->yfinance->-r requirements.txt (line 3))
+  Downloading cffi-2.1.1-cp315-cp315-win_amd64.whl.metadata (2.6 kB)
+Collecting certifi>=2026.10.19 (from curl_cffi>=0.17->yfinance->-r requirements.txt (line 3))
+  Using cached certifi-2026.11.20-py3-none-any.whl.metadata (2.5 kB)
+Collecting pycparser (from cffi>=2.1.1->curl_cffi>=0.17->yfinance->-r requirements.txt (line 3))
+  Using cached pycparser-3.12-py3-none-any.whl.metadata (9.7 kB)
+Collecting python-dateutil>=2.9.0 (from pandas>=1.3.0->yfinance->-r requirements.txt (line 3))
+  Using cached python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+Collecting tzdata (from pandas>=1.3.0->yfinance->-r requirements.txt (line 3))
+  Using cached tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting charset_normalizer<4,>=2 (from requests>=2.31->yfinance->-r requirements.txt (line 3))
+  Downloading charset_normalizer-3.5.3-cp315-cp315-win_amd64.whl.metadata (44 kB)
+Collecting idna<4,>=2.5 (from requests>=2.31->yfinance->-r requirements.txt (line 3))
+  Using cached idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting urllib3<3,>=1.26 (from requests>=2.31->yfinance->-r requirements.txt (line 3))
+  Using cached urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Downloading yfinance-1.8.0-py3-none-any.whl (158 kB)
+Using cached beautifulsoup4-4.15.0-py3-none-any.whl (109 kB)
+Downloading curl_cffi-0.17.0-cp315-abi3.abi3t-win_amd64.whl (2.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 16.5 MB/s  0:00:00
+Using cached certifi-2026.11.20-py3-none-any.whl (127 kB)
+Downloading cffi-2.1.1-cp315-cp315-win_amd64.whl (187 kB)
+Downloading lxml-6.1.3-cp315-cp315-win_amd64.whl (4.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 18.7 MB/s  0:00:00
+Downloading numpy-2.5.5-cp315-cp315-win_amd64.whl (12.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.7/12.7 MB 18.4 MB/s  0:00:00
+Downloading pandas-3.1.1-cp315-cp315-win_amd64.whl (10.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.9/10.9 MB 18.2 MB/s  0:00:00
+Downloading peewee-4.5.3-py3-none-any.whl (194 kB)
+Using cached platformdirs-4.14.8-py3-none-any.whl (94 kB)
+Downloading protobuf-7.36.2-cp310-abi3-win_amd64.whl (456 kB)
+Using cached python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+Using cached pytz-2026.6-py2.py3-none-any.whl (506 kB)
+Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading charset_normalizer-3.5.3-cp315-cp315-win_amd64.whl (218 kB)
+Using cached idna-3.20-py3-none-any.whl (69 kB)
+Using cached urllib3-2.8.0-py3-none-any.whl (135 kB)
+Using cached soupsieve-4.1.3-py3-none-any.whl (59 kB)
+Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading websockets-17.4-cp315-cp315-win_amd64.whl (219 kB)
+Using cached pycparser-3.12-py3-none-any.whl (62 kB)
+Using cached tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+Installing collected packages: pytz, websockets, urllib3, tzdata, typing-extensions, soupsieve, pycparser, protobuf, platformdirs, peewee, numpy, lxml, idna, charset_normalizer, certifi, requests, python-dateutil, cffi, beautifulsoup4, pandas, curl_cffi, yfinance
+   ━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  1/22 [websockets]  WARNING: The script websockets.exe is installed in 'C:\Users\esthe\AppData\Local\Python\pythoncore-3.15-64\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+   ━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━  9/22 [peewee]  WARNING: The scripts pwiz.exe and pwmigrate.exe are installed in 'C:\Users\esthe\AppData\Local\Python\pythoncore-3.15-64\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+   ━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━ 10/22 [numpy]  WARNING: The scripts f2py.exe and numpy-config.exe are installed in 'C:\Users\esthe\AppData\Local\Python\pythoncore-3.15-64\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+   ━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━ 12/22 [idna]  WARNING: The script idna.exe is installed in 'C:\Users\esthe\AppData\Local\Python\pythoncore-3.15-64\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+   ━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━ 13/22 [charset_normalizer]  WARNING: The script normalizer.exe is installed in 'C:\Users\esthe\AppData\Local\Python\pythoncore-3.15-64\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━ 17/22 [cffi]  WARNING: The script cffi-gen-src.exe is installed in 'C:\Users\esthe\AppData\Local\Python\pythoncore-3.15-64\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━ 20/22 [curl_cffi]  WARNING: The script curl-cffi.exe is installed in 'C:\Users\esthe\AppData\Local\Python\pythoncore-3.15-64\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed beautifulsoup4-4.15.0 certifi-2026.11.20 cffi-2.1.1 charset_normalizer-3.5.3 curl_cffi-0.17.0 idna-3.20 lxml-6.1.3 numpy-2.5.5 pandas-3.1.1 peewee-4.5.3 platformdirs-4.14.8 protobuf-7.36.2 pycparser-3.12 python-dateutil-4.0.0 pytz-2026.6 requests-2.34.2 soupsieve-4.1.3 typing-extensions-4.16.0 tzdata-2026.6 urllib3-2.8.0 websockets-17.4 yfinance-1.8.0
+
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: C:\Users\esthe\AppData\Local\Python\pythoncore-3.15-64\python.exe -m pip install --upgrade pip
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+Provider : Yahoo Finance via yfinance
+
+Instrument
+AAPL - Apple Inc.
+Market        : NASDAQ
+Observations  : 23
+Traceback (most recent call last):
+  File "C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders\src\main.py", line 124, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders\src\main.py", line 94, in main
+    display_market_summary(instrument, aligned_instrument, instrument_return)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders\src\main.py", line 46, in display_market_summary
+    print(f"First date    : {get_first_date(prices)}")
+                             ^^^^^^^^^^^^^^
+NameError: name 'get_first_date' is not defined. Did you mean: 'get_first_close'?
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git switch -c fix/restore-date-helpers
+Switched to a new branch 'fix/restore-date-helpers'
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git restore src/main.py
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git pull
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2), pack-reused 0 (from 0)
+Unpacking objects: 100% (4/4), 471 bytes | 14.00 KiB/s, done.
+From https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders
+ * [new branch]      fix/restore-date-helpers -> origin/fix/restore-date-helpers
+Already up to date.
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git branch -D fix/restore-date-helpers
+Deleted branch fix/restore-date-helpers (was 9f94de8).
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git switch -c docs/move-esther-reports
+Switched to a new branch 'docs/move-esther-reports'
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git mv evidence/ecetere RenduTP/esther
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git status
+On branch docs/move-esther-reports
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    evidence/ecetere/TD1_TD2_reponse.pdf -> RenduTP/esther/TD1_TD2_reponse.pdf
+        renamed:    evidence/ecetere/TD3_terminal.txt -> RenduTP/esther/TD3_terminal.txt
+        renamed:    evidence/ecetere/TD4_checkpointA.txt -> RenduTP/esther/TD4_checkpointA.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        evidence/TD1_TD2_reponse.pdf
+        labs/.ipynb_checkpoints/
+        labs/TD1_reponse.odt
+        labs/TEAM.md
+
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git commit -m "docs: move Esther's lab reports to RenduTP"
+[docs/move-esther-reports 58322e7] docs: move Esther's lab reports to RenduTP
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ rename {evidence/ecetere => RenduTP/esther}/TD1_TD2_reponse.pdf (100%)
+ rename {evidence/ecetere => RenduTP/esther}/TD3_terminal.txt (100%)
+ rename {evidence/ecetere => RenduTP/esther}/TD4_checkpointA.txt (100%)
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git push -u origin docs/move-esther-reports
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 479 bytes | 479.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'docs/move-esther-reports' on GitHub by visiting:
+remote:      https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders/pull/new/docs/move-esther-reports
+remote:
+To https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders.git
+ * [new branch]      docs/move-esther-reports -> docs/move-esther-reports
+branch 'docs/move-esther-reports' set up to track 'origin/docs/move-esther-reports'.
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git pull
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (1/1), 934 bytes | 93.00 KiB/s, done.
+From https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders
+   9f94de8..efb70ef  main       -> origin/main
+Updating 9f94de8..efb70ef
+Fast-forward
+ {evidence/ecetere => RenduTP/esther}/TD1_TD2_reponse.pdf | Bin
+ {evidence/ecetere => RenduTP/esther}/TD3_terminal.txt    |   0
+ {evidence/ecetere => RenduTP/esther}/TD4_checkpointA.txt |   0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ rename {evidence/ecetere => RenduTP/esther}/TD1_TD2_reponse.pdf (100%)
+ rename {evidence/ecetere => RenduTP/esther}/TD3_terminal.txt (100%)
+ rename {evidence/ecetere => RenduTP/esther}/TD4_checkpointA.txt (100%)
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+Provider : Yahoo Finance via yfinance
+
+Instrument
+AAPL - Apple Inc.
+Market        : NASDAQ
+Observations  : 23
+Traceback (most recent call last):
+  File "C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders\src\main.py", line 124, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders\src\main.py", line 94, in main
+    display_market_summary(instrument, aligned_instrument, instrument_return)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders\src\main.py", line 46, in display_market_summary
+    print(f"First date    : {get_first_date(prices)}")
+                             ^^^^^^^^^^^^^^
+NameError: name 'get_first_date' is not defined. Did you mean: 'get_first_close'?
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> git pull
+remote: Enumerating objects: 2, done.
+remote: Counting objects: 100% (2/2), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 2 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (2/2), 1.34 KiB | 114.00 KiB/s, done.
+From https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders
+   efb70ef..5de32e6  main       -> origin/main
+Updating efb70ef..5de32e6
+Fast-forward
+ src/main.py | 7 +++++++
+ 1 file changed, 7 insertions(+)
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders> python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+Provider : Yahoo Finance via yfinance
+
+Instrument
+AAPL - Apple Inc.
+Market        : NASDAQ
+Observations  : 23
+First date    : 2026-10-26
+Last date     : 2026-11-25
+First close   : 343.91 USD
+Last close    : 355.58 USD
+Period return : 3.39%
+
+Benchmark
+SP500 - S&P 500
+Market        : US
+Observations  : 23
+First date    : 2026-10-26
+Last date     : 2026-11-25
+First close   : 7676.77
+Last close    : 7182.78
+Period return : -6.43%
+
+Relative performance
+AAPL vs SP500 : +9.83 percentage points
+
+Base 100
+AAPL  : 100.00 -> 103.39
+SP500 : 100.00 -> 93.57
+PS C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>
+
+
