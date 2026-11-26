@@ -25,6 +25,30 @@ def load_prices():
 def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
 
+def get_first_date(prices):
+    return prices[0]["date"]
+
+
+def get_last_date(prices):
+    return prices[-1]["date"]
+
+
+def display_market_summary(title, market, prices):
+    currency = market.get("currency", "")
+    print(title)
+    print(f"{market['ticker']} - {market['name']}")
+    print(f"Observations : {len(prices)}")
+    print(f"First date   : {get_first_date(prices)}")
+    print(f"Last date    : {get_last_date(prices)}")
+    print(f"First close  : {float(prices[0]['close']):.2f} {currency}")
+    print(f"Last close   : {float(prices[-1]['close']):.2f} {currency}")
+
+def display_market_metadata(title, market):
+    print(f"{title} metadata")
+    print(f"Ticker   : {market['ticker']}")
+    print(f"Name     : {market['name']}")
+    print(f"Currency : {market['currency']}")
+    print(f"Market   : {market.get('market', 'N/A')}")
 
 def main():
     instruments = load_instruments()
@@ -36,26 +60,20 @@ def main():
     instrument_prices = filter_prices(prices, instrument["ticker"])
     benchmark_prices = filter_prices(prices, benchmark["ticker"])
 
-    instrument_latest = instrument_prices[-1]
-    benchmark_latest = benchmark_prices[-1]
-
     print("=== MarketPulse ===")
     print()
-    print("Instrument")
-    print(f"{instrument['ticker']} - {instrument['name']}")
-    print(f"Last price: {instrument_latest['close']} {instrument['currency']}")
+    display_market_summary("Instrument", instrument, instrument_prices)
     print()
-    print("Benchmark")
-    print(f"{benchmark['ticker']} - {benchmark['name']}")
-    print(f"Last level: {benchmark_latest['close']}")
+    display_market_summary("Benchmark", benchmark, benchmark_prices)
     print()
     print(f"Period: {LOOKBACK_LABEL}")
     print(f"Interval: {INTERVAL_LABEL}")
+
     print()
-    print("Observations")
-    print(f"{instrument['ticker']}: {len(instrument_prices)}")
-    print(f"{benchmark['ticker']}: {len(benchmark_prices)}")
+    display_market_metadata("Instrument", instrument)
+    print()
+    display_market_metadata("Benchmark", benchmark)
 
-
+    
 if __name__ == "__main__":
     main()
