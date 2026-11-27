@@ -249,10 +249,7 @@ Provider identifiers belong at the provider boundary.
 Use the standard workflow already learned.
 
 ```bash
-git switch main
-git pull
-git status
-git switch -c feature/yahoo-provider
+python -m pip install yfinance
 ```
 
 TD08 does not reteach Git theory.
