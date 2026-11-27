@@ -1,18 +1,22 @@
-from pathlib import Path
+﻿from pathlib import Path
 import csv
 import json
-import yfinance as yf
 from analytics import (
     align_series,
     calculate_base_100,
     calculate_period_return,
     calculate_relative_performance,
 )
-from providers.yahoo_provider import YAHOO_SYMBOLS, fetch_yahoo_prices
+from providers.bloomberg_provider import (
+    ACCESS_MODE,
+    BLOOMBERG_IDENTIFIERS,
+    fetch_bloomberg_prices,
+)
 
 DATA_DIR = Path("data/sample")
 
-LOOKBACK_LABEL = "1_month"
+PROVIDER_LABEL = "Bloomberg stage"
+LOOKBACK_LABEL = "1 month"
 INTERVAL_LABEL = "Daily"
 
 
@@ -34,55 +38,6 @@ def load_prices():
         return list(csv.DictReader(file))
 
 
-def filter_prices(prices, ticker):
-    result = []
-
-    for row in prices:
-        if row["ticker"] == ticker:
-            result.append(row)
-
-    return result
-
-
-def get_first_close(prices):
-    first_price = prices[0]
-    close = first_price["close"]
-
-    return float(close)
-
-
-def get_last_close(prices):
-    last_price = prices[-1]
-    close = last_price["close"]
-
-    return float(close)
-
-
-def display_market_summary(asset, prices, show_currency=True):
-    ticker = asset["ticker"]
-    name = asset["name"]
-    market = asset["market"]
-
-    first_close = get_first_close(prices)
-    last_close = get_last_close(prices)
-    print("Observations :", len(prices))
-    print("First date :", get_first_date(prices))
-    print("Last date :", get_last_date(prices))
-    print(ticker + " - " + name)
-    print("Market :", market)
-    print("Observations :", len(prices))
-
-    if show_currency:
-        currency = asset["currency"]
-
-        print("First close :", first_close, currency)
-        print("Last close :", last_close, currency)
-
-    else:
-        print("First close :", first_close)
-        print("Last close :", last_close)
-
-
 def normalize_price_row(row):
     return {
         "date": row["date"],
@@ -95,55 +50,17 @@ def normalize_price_row(row):
     }
 
 
-def fetch_yahoo_prices(
-    symbol,
-    canonical_ticker,
-    period="1mo",
-    interval="1d",
+def build_market_snapshot(
+    instrument_ticker="AAPL",
+    benchmark_ticker="SP500",
 ):
-    history = yf.Ticker(symbol).history(
-        period=period,
-        interval=interval,
-        auto_adjust=False,
-    )
-
-    if history.empty:
-        raise ValueError(
-            "No Yahoo Finance data returned for " + symbol
-        )
-
-    rows = []
-
-    for timestamp, row in history.iterrows():
-        rows.append({
-            "date": timestamp.strftime("%Y-%m-%d"),
-            "ticker": canonical_ticker,
-            "open": float(row["Open"]),
-            "high": float(row["High"]),
-            "low": float(row["Low"]),
-            "close": float(row["Close"]),
-            "volume": int(row["Volume"]),
-        })
-
-    return rows
-
-
-def main():
-    instrument_ticker = "AAPL"
-    benchmark_ticker = "SP500"
-
-    instrument_prices = fetch_yahoo_prices(
-        symbol=YAHOO_SYMBOLS[instrument_ticker],
+    instrument_prices = fetch_bloomberg_prices(
+        identifier=BLOOMBERG_IDENTIFIERS[instrument_ticker],
         canonical_ticker=instrument_ticker,
-        period="1mo",
-        interval="1d",
     )
-
-    benchmark_prices = fetch_yahoo_prices(
-        symbol=YAHOO_SYMBOLS[benchmark_ticker],
+    benchmark_prices = fetch_bloomberg_prices(
+        identifier=BLOOMBERG_IDENTIFIERS[benchmark_ticker],
         canonical_ticker=benchmark_ticker,
-        period="1mo",
-        interval="1d",
     )
 
     aligned_instrument, aligned_benchmark = align_series(
@@ -160,6 +77,31 @@ def main():
     instrument_base_100 = calculate_base_100(aligned_instrument)
     benchmark_base_100 = calculate_base_100(aligned_benchmark)
 
+    return {
+        "provider": PROVIDER_LABEL,
+        "access_mode": ACCESS_MODE,
+        "lookback": LOOKBACK_LABEL,
+        "interval": INTERVAL_LABEL,
+        "instrument": instrument_ticker,
+        "benchmark": benchmark_ticker,
+        "instrument_return": instrument_return,
+        "benchmark_return": benchmark_return,
+        "relative_performance": relative_performance,
+        "instrument_base_100": instrument_base_100,
+        "benchmark_base_100": benchmark_base_100,
+    }
+
+
+def main():
+    snapshot = build_market_snapshot()
+    instrument_ticker = snapshot["instrument"]
+    benchmark_ticker = snapshot["benchmark"]
+    instrument_return = snapshot["instrument_return"]
+    benchmark_return = snapshot["benchmark_return"]
+    relative_performance = snapshot["relative_performance"]
+    instrument_base_100 = snapshot["instrument_base_100"]
+    benchmark_base_100 = snapshot["benchmark_base_100"]
+
     rel_perf_rounded = round(relative_performance, 2)
     if rel_perf_rounded > 0:
         rel_perf_str = "+" + str(rel_perf_rounded)
@@ -169,13 +111,16 @@ def main():
     print("=== MarketPulse ===")
     print()
     print("Provider")
-    print("Yahoo Finance via yfinance")
+    print(snapshot["provider"])
+    print()
+    print("Access mode")
+    print(snapshot["access_mode"])
     print()
     print("Market configuration")
     print("Instrument :", instrument_ticker, "- Apple Inc.")
     print("Benchmark  : S&P 500")
-    print("Period     :", LOOKBACK_LABEL)
-    print("Interval   :", INTERVAL_LABEL)
+    print("Period     :", snapshot["lookback"])
+    print("Interval   :", snapshot["interval"])
     print()
     print("Instrument return :", str(round(instrument_return, 2)) + "%")
     print("Benchmark return  :", str(round(benchmark_return, 2)) + "%")
