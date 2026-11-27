@@ -258,6 +258,9 @@ Instructor reference:
 docs/10_BLOOMBERG_INSTRUCTOR_REFERENCE.md
 ```
 
+**Active team release mode:** `Bloomberg stage - APPROVED_SAMPLE` (runs locally without a live Bloomberg Terminal connection).
+
+
 ## Student Git workflow
 
 The collaboration model is:
