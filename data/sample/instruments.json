@@ -3,12 +3,14 @@
     "ticker": "AAPL",
     "name": "Apple Inc.",
     "currency": "USD",
-    "market": "NASDAQ"
+    "market": "NASDAQ",
+    "provider": "CSV"
   },
   "benchmark": {
     "ticker": "SP500",
     "name": "S&P 500",
     "currency": "USD",
-    "market": "US"
+    "market": "US",
+    "provider": "CSV"
   }
 }
