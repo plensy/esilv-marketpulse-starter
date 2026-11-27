@@ -258,6 +258,9 @@ Instructor reference:
 docs/10_BLOOMBERG_INSTRUCTOR_REFERENCE.md
 ```
 
+**Active team release mode:** `Bloomberg stage - APPROVED_SAMPLE` (runs locally without a live Bloomberg Terminal connection).
+
+
 ## Student Git workflow
 
 The collaboration model is:
@@ -475,3 +478,28 @@ This README intentionally does not display CI, security, release or license badg
 **Course:** MESIFI472326 - Python, Git, Linux  
 **School:** ESILV - A4  
 **Use case:** MarketPulse - Multi-Source Financial Market Data Dashboard
+
+## Final release status
+
+- **Instrument:** AAPL - Apple Inc.
+- **Benchmark:** SP500 - S&P 500
+- **Period and interval:** 1 month, Daily
+- **Provider used by the default run:** Bloomberg stage in `APPROVED_SAMPLE` mode (fixture `data/sample/bloomberg_reference_sample.json`). This does not demonstrate live Bloomberg connectivity. A Yahoo Finance provider (`yfinance`, internet required) is also implemented in `src/providers/yahoo_provider.py`.
+
+Install and run from the repository root:
+
+```bash
+python -m pip install -r requirements.txt
+python src/main.py
+python src/dashboard.py
+```
+
+The dashboard is served locally at `http://127.0.0.1:8050/`. The terminal and the dashboard consume the same `build_market_snapshot(...)` result.
+
+Environment constraints:
+
+- `APPROVED_SAMPLE` runs anywhere, without Bloomberg access.
+- `LIVE` Bloomberg requires the instructor-approved Bloomberg environment.
+- The Yahoo Finance provider requires internet access.
+
+Checkpoint evidence is stored under `evidence/`, in one folder per checkpoint and then one folder per GitHub username (currently `evidence/checkpoint-a/`; Checkpoint C is added at the end of TD12).
