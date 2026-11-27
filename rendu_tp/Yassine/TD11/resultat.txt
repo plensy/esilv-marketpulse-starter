@@ -1,0 +1,24 @@
+cat > rendu_tp/Yassine/TD11/resultat.txt <<'EOF'
+TD11 - Dash Dashboard
+
+Status: SUCCESS
+
+Dashboard launched successfully with:
+python src/dashboard.py
+
+Validated interface:
+- Provider: Bloomberg stage - APPROVED_SAMPLE
+- Instrument: AAPL - Apple Inc.
+- Benchmark: SP500 - S&P 500
+- Lookback: 1 month
+- Interval: Daily
+- Instrument Return: +6.48%
+- Benchmark Return: +2.15%
+- Relative Performance: +4.33 pts
+
+The Base 100 chart displays both the instrument and benchmark series.
+
+The dashboard values were checked against the terminal output from python src/main.py.
+
+No provider calls or financial calculations were added to the dashboard.
+EOF

@@ -1,0 +1,107 @@
+[1mdiff --git a/src/main.py b/src/main.py[m
+[1mindex 884b045..ee10919 100644[m
+[1m--- a/src/main.py[m
+[1m+++ b/src/main.py[m
+[36m@@ -5,9 +5,7 @@[m [mimport json[m
+ [m
+ DATA_DIR = Path("data/sample")[m
+ [m
+[31m-# These starter values mirror config/settings.yml.[m
+[31m-# settings.yml is a human-readable configuration contract in the CORE.[m
+[31m-# Parsing YAML is optional and is not required by the 18-hour lab sequence.[m
+[32m+[m
+ LOOKBACK_LABEL = "1 month"[m
+ INTERVAL_LABEL = "Daily"[m
+ [m
+[36m@@ -26,36 +24,74 @@[m [mdef filter_prices(prices, ticker):[m
+     return [row for row in prices if row["ticker"] == ticker][m
+ [m
+ [m
+[32m+[m[32mdef get_first_close(prices):[m
+[32m+[m[32m    return float(prices[0]["close"])[m
+[32m+[m
+[32m+[m
+[32m+[m[32mdef get_last_close(prices):[m
+[32m+[m[32m    return float(prices[-1]["close"])[m
+[32m+[m
+[32m+[m
+[32m+[m[32mdef display_market_summary(asset, prices, show_currency=True):[m
+[32m+[m[32m    first_close = get_first_close(prices)[m
+[32m+[m[32m    last_close = get_last_close(prices)[m
+[32m+[m
+[32m+[m[32m    print(f"{asset['ticker']} - {asset['name']}")[m
+[32m+[m[32m    print(f"Observations : {len(prices)}")[m
+[32m+[m
+[32m+[m[32m    if show_currency:[m
+[32m+[m[32m        print(f"First close  : {first_close:.2f} {asset['currency']}")[m
+[32m+[m[32m        print(f"Last close   : {last_close:.2f} {asset['currency']}")[m
+[32m+[m[32m    else:[m
+[32m+[m[32m        print(f"First close  : {first_close:.2f}")[m
+[32m+[m[32m        print(f"Last close   : {last_close:.2f}")[m
+[32m+[m
+[32m+[m
+ def main():[m
+[32m+[m[41m    [m
+     instruments = load_instruments()[m
+     prices = load_prices()[m
+ [m
+[32m+[m[41m    [m
+     instrument = instruments["instrument"][m
+     benchmark = instruments["benchmark"][m
+ [m
+[31m-    instrument_prices = filter_prices(prices, instrument["ticker"])[m
+[31m-    benchmark_prices = filter_prices(prices, benchmark["ticker"])[m
+[32m+[m[41m   [m
+[32m+[m[32m    instrument_prices = filter_prices([m
+[32m+[m[32m        prices,[m
+[32m+[m[32m        instrument["ticker"],[m
+[32m+[m[32m    )[m
+ [m
+[31m-    instrument_latest = instrument_prices[-1][m
+[31m-    benchmark_latest = benchmark_prices[-1][m
+[32m+[m[32m    benchmark_prices = filter_prices([m
+[32m+[m[32m        prices,[m
+[32m+[m[32m        benchmark["ticker"],[m
+[32m+[m[32m    )[m
+ [m
+[32m+[m[41m    [m
+     print("=== MarketPulse ===")[m
+     print()[m
+[32m+[m[32m    print("Market configuration")[m
+[32m+[m[32m    print(f"Period   : {LOOKBACK_LABEL}")[m
+[32m+[m[32m    print(f"Interval : {INTERVAL_LABEL}")[m
+[32m+[m[32m    print()[m
+[32m+[m
+[32m+[m[41m    [m
+     print("Instrument")[m
+[31m-    print(f"{instrument['ticker']} - {instrument['name']}")[m
+[31m-    print(f"Last price: {instrument_latest['close']} {instrument['currency']}")[m
+[32m+[m[32m    display_market_summary([m
+[32m+[m[32m        instrument,[m
+[32m+[m[32m        instrument_prices,[m
+[32m+[m[32m        show_currency=True,[m
+[32m+[m[32m    )[m
+     print()[m
+[32m+[m
+[32m+[m[41m    [m
+     print("Benchmark")[m
+[31m-    print(f"{benchmark['ticker']} - {benchmark['name']}")[m
+[31m-    print(f"Last level: {benchmark_latest['close']}")[m
+[31m-    print()[m
+[31m-    print(f"Period: {LOOKBACK_LABEL}")[m
+[31m-    print(f"Interval: {INTERVAL_LABEL}")[m
+[31m-    print()[m
+[31m-    print("Observations")[m
+[31m-    print(f"{instrument['ticker']}: {len(instrument_prices)}")[m
+[31m-    print(f"{benchmark['ticker']}: {len(benchmark_prices)}")[m
+[32m+[m[32m    display_market_summary([m
+[32m+[m[32m        benchmark,[m
+[32m+[m[32m        benchmark_prices,[m
+[32m+[m[32m        show_currency=False,[m
+[32m+[m[32m    )[m
+ [m
+ [m
+ if __name__ == "__main__":[m
+[31m-    main()[m
+[32m+[m[32m    main()[m
+\ No newline at end of file[m

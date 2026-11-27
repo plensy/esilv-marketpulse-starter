@@ -1,0 +1,63 @@
+cat > rendu_tp/Yassine/TD10/resultat.txt <<'EOF'
+=== TD10 - Bloomberg Provider ===
+
+Access mode: APPROVED_SAMPLE
+Live connectivity: not demonstrated
+
+=== Bloomberg Identifiers ===
+
+Instrument:
+Canonical ticker: AAPL
+Bloomberg identifier: AAPL US Equity
+
+Benchmark:
+Canonical ticker: SP500
+Bloomberg identifier: SPX Index
+
+=== Canonical Data Contract ===
+
+date
+ticker
+open
+high
+low
+close
+volume
+
+=== Provider Architecture ===
+
+Bloomberg-stage input
+        |
+        v
+bloomberg_provider.py
+        |
+        v
+Canonical rows
+        |
+        v
+align_series()
+        |
+        v
+Shared analytics
+        |
+        v
+MarketPulse snapshot
+
+=== Shared Analytics ===
+
+Period return
+Base 100
+Relative performance
+
+=== Validation ===
+
+APPROVED_SAMPLE is used as the authorized fallback mode.
+
+Live Bloomberg connectivity is not demonstrated.
+
+=== TD11 Handoff ===
+
+build_market_snapshot(...)
+
+The same application snapshot is intended to be reused by the terminal and dashboard.
+EOF

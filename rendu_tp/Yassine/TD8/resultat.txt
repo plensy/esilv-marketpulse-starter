@@ -1,0 +1,56 @@
+TD8 – Yahoo Finance
+==================
+
+Objectif :
+Récupérer des données de marché depuis Yahoo Finance et les intégrer à MarketPulse tout en réutilisant les analytics du TD7.
+
+Provider :
+Yahoo Finance via la bibliothèque yfinance.
+
+Instrument :
+AAPL – Apple Inc.
+
+Benchmark :
+SP500 – S&P 500
+
+Mapping des symboles :
+AAPL -> AAPL
+SP500 -> ^GSPC
+
+Configuration :
+Période : 1 mois
+Intervalle : Daily
+
+Structure canonique :
+date, ticker, open, high, low, close, volume
+
+Architecture :
+Yahoo Finance
+    |
+    v
+Yahoo Provider
+    |
+    v
+Données canoniques
+    |
+    v
+Analytics TD7
+    |
+    v
+Comparaison terminal
+
+Fonctions réutilisées :
+- align_series()
+- calculate_period_return()
+- calculate_base_100()
+- calculate_relative_performance()
+
+Commande de lancement prévue :
+python src/main.py
+
+Résultat réel :
+À compléter après l'exécution du TD8.
+
+Statut :
+Documentation préparée.
+Implémentation et validation à effectuer.
