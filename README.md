@@ -204,6 +204,20 @@ These are the two canonical CORE runtime commands.
 
 The instructor starter repository does not necessarily contain every later-stage student file on day one. Files appear progressively during the lab sequence.
 
+## Final release status
+
+**Provider used.** By default, MarketPulse gets AAPL and S&P 500 data from Yahoo Finance via yfinance (`PROVIDER = "yahoo"` in `src/main.py`). The Bloomberg stage can be selected with `PROVIDER = "bloomberg"`, but it runs in `APPROVED_SAMPLE` mode. It reads the sample files in `data/sample` and is not a live Bloomberg connection.
+
+**Environment.** The Yahoo path needs internet access. The Bloomberg sample path works offline.
+
+**How to run.**
+
+    python -m pip install -r requirements.txt
+    python src/main.py
+    python src/dashboard.py
+
+**Evidence.** Checkpoint evidence is stored in the `evidence/` folder.
+
 ## Installation
 
 The starter TD01-TD02 path uses only the Python standard library.
