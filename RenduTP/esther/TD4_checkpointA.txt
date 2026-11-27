@@ -1,0 +1,425 @@
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git status
+On branch esther
+Your branch is up to date with 'origin/esther'.
+
+nothing to commit, working tree clean
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git log --oneline -5
+60dc696 (HEAD -> esther, origin/esther) docs: add TD3 terminal
+187173d feat : improve marketpulse market summary
+f7a374c Merge branch 'plensy:main' into esther
+c388ccd Add files via upload
+a456f76 Ajout des preuves TD01 et TD02
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git branch
+* esther
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git status
+On branch esther
+Your branch is up to date with 'origin/esther'.
+
+nothing to commit, working tree clean
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git switch -c feature/display-observation-dates
+Switched to a new branch 'feature/display-observation-dates'
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git branch
+  esther
+* feature/display-observation-dates
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ code src/main.py
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git status
+On branch feature/display-observation-dates
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   labs/TD04_BRANCHES_AND_MERGE (1).md
+        modified:   src/main.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git diff
+diff --git a/labs/TD04_BRANCHES_AND_MERGE (1).md b/labs/TD04_BRANCHES_AND_MERGE (1).md
+index 09be143..32f81ae 100644
+--- a/labs/TD04_BRANCHES_AND_MERGE (1).md       
++++ b/labs/TD04_BRANCHES_AND_MERGE (1).md       
+@@ -809,4 +809,4 @@ TD05 feature branches
+ 
+ The detailed procedure is at the start of TD05 and in `docs/03_GITHUB_TEAM_WORKFLOW.md`.
+ 
+-This synchronization is an operational handoff, not an advanced Git-history exercise.
++This synchronization is an operational handoff, not an advanced Git-history exercise.
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git add src/main.py
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git diff --staged
+diff --git a/src/main.py b/src/main.py
+index c76d64b..9819cdd 100644
+--- a/src/main.py
++++ b/src/main.py
+@@ -33,6 +33,13 @@ def get_first_close(prices):
+ def get_last_close(prices):
+     return float(prices[-1]["close"])
+ 
++def get_first_date(prices):
++    return prices[0]["date"]
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git commit -m "feat: display first and last observation dates"
+[feature/display-observation-dates eb00136] feat: display first and last observation dates
+ 1 file changed, 9 insertions(+)
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git status
+On branch feature/display-observation-dates
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   labs/TD04_BRANCHES_AND_MERGE (1).md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git log --oneline -5
+eb00136 (HEAD -> feature/display-observation-dates) feat: display first and last observation dates
+60dc696 (origin/esther, esther) docs: add TD3 terminal
+187173d feat : improve marketpulse market summary
+f7a374c Merge branch 'plensy:main' into esther
+c388ccd Add files via upload
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git log --oneline --graph --decorate --all
+* eb00136 (HEAD -> feature/display-observation-dates) feat: display first and last observation dates
+* 60dc696 (origin/esther, esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+| | |/  
+:...skipping...
+* eb00136 (HEAD -> feature/display-observation-dates) feat: display first and last observation dates
+* 60dc696 (origin/esther, esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+| | |/  
+| |/|   
+| * | c388ccd Add files via upload
+|/ /  
+| * 7be4e8f Complete TD01-02
+|/  
+| * 96bb20d (origin/branchemaelys) Add TD1-2 PDF report
+|/  
+| * 9186c8a (origin/jeanne) TD02 : captures du travail réalisé
+| * 63a0ae7 TD01 : captures du travail réalisé
+|/  
+* 5207db8 (origin/leopold) first td session
+* ba5c9f4 Update Readme
+* 9fd6c8a Update Readme
+* bfb94a6 init projecttemplate
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)
+* eb00136 (HEAD -> feature/display-observation-dates) feat: display first and last observation dates
+* 60dc696 (origin/esther, esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+| | |/  
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git diff main..feature/display-observation-dates
+fatal: ambiguous argument 'main..feature/display-observation-dates': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-observation-dates) $ git switch main
+M       labs/TD04_BRANCHES_AND_MERGE (1).md
+branch 'main' set up to track 'origin/main'.
+Switched to a new branch 'main'
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git branch
+  esther
+  feature/display-observation-dates
+* main
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git restore "labs/TD04_BRANCHES_AND_MERGE (1).md"
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git switch ecetere
+fatal: invalid reference: ecetere
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git switch esther
+Switched to branch 'esther'
+Your branch is up to date with 'origin/esther'.
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git branch -d main
+warning: deleting branch 'main' that has been merged to
+         'refs/remotes/origin/main', but not yet merged to HEAD
+Deleted branch main (was a01ed95).
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git branch
+* esther
+  feature/display-observation-dates
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git merge feature/display-observation-dates
+Updating 60dc696..eb00136
+Fast-forward
+ src/main.py | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git log --oneline --graph --decorate --all
+* eb00136 (HEAD -> esther, feature/display-observation-dates) feat: display first and last observation dates
+* 60dc696 (origin/esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+:...skipping...
+* eb00136 (HEAD -> esther, feature/display-observation-dates) feat: display first and last observation dates
+* 60dc696 (origin/esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+| | |/  
+| |/|   
+| * | c388ccd Add files via upload
+|/ /  
+| * 7be4e8f Complete TD01-02
+|/  
+| * 96bb20d (origin/branchemaelys) Add TD1-2 PDF report
+|/  
+| * 9186c8a (origin/jeanne) TD02 : captures du travail réalisé
+| * 63a0ae7 TD01 : captures du travail réalisé
+|/  
+* 5207db8 (origin/leopold) first td session
+* ba5c9f4 Update Readme
+* 9fd6c8a Update Readme
+* bfb94a6 init projecttemplate
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git branch
+* esther
+  feature/display-observation-dates
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git branch --merged
+* esther
+  feature/display-observation-dates
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git log --oneline --graph --decorate --all
+* eb00136 (HEAD -> esther, feature/display-observation-dates) feat: display first and last observation dates
+* 60dc696 (origin/esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+:...skipping...
+* eb00136 (HEAD -> esther, feature/display-observation-dates) feat: display first and last observation dates
+* 60dc696 (origin/esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+| | |/  
+| |/|   
+| * | c388ccd Add files via upload
+|/ /  
+| * 7be4e8f Complete TD01-02
+|/  
+| * 96bb20d (origin/branchemaelys) Add TD1-2 PDF report
+|/  
+| * 9186c8a (origin/jeanne) TD02 : captures du travail réalisé
+| * 63a0ae7 TD01 : captures du travail réalisé
+|/  
+* 5207db8 (origin/leopold) first td session
+* ba5c9f4 Update Readme
+* 9fd6c8a Update Readme
+* bfb94a6 init projecttemplate
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git branch -d feature/display-observation-dates
+Deleted branch feature/display-observation-dates (was eb00136).
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git branch
+* esther
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git log --oneline --graph --decorate --all
+* eb00136 (HEAD -> esther) feat: display first and last observation dates
+* 60dc696 (origin/esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+| | |/  
+:...skipping...
+* eb00136 (HEAD -> esther) feat: display first and last observation dates
+* 60dc696 (origin/esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+| | |/  
+| |/|   
+| * | c388ccd Add files via upload
+|/ /  
+| * 7be4e8f Complete TD01-02
+|/  
+| * 96bb20d (origin/branchemaelys) Add TD1-2 PDF report
+|/  
+| * 9186c8a (origin/jeanne) TD02 : captures du travail réalisé
+| * 63a0ae7 TD01 : captures du travail réalisé
+|/  
+* 5207db8 (origin/leopold) first td session
+* ba5c9f4 Update Readme
+* 9fd6c8a Update Readme
+* bfb94a6 init projecttemplate
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)
+* eb00136 (HEAD -> esther) feat: display first and last observation dates
+* 60dc696 (origin/esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+| | |/  
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git status
+On branch esther
+Your branch is ahead of 'origin/esther' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git log --oneline --graph --decorate --all
+* eb00136 (HEAD -> esther) feat: display first and last observation dates
+* 60dc696 (origin/esther) docs: add TD3 terminal
+* 187173d feat : improve marketpulse market summary
+*   f7a374c Merge branch 'plensy:main' into esther
+|\  
+* | a456f76 Ajout des preuves TD01 et TD02
+* | 981664e Ajout du fichier TEAM.md
+| | *   a01ed95 (origin/main, origin/HEAD) Merge branch 'plensy:main' into main
+| | |\  
+| | |/  
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ 

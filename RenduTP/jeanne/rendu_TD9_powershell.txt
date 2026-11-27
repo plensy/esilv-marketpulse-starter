@@ -1,0 +1,37 @@
+﻿**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20261127162536
+Nom d'utilisateur : HP_ESPINOS15\guyma
+Utilisateur runAs :  HP_ESPINOS15\guyma
+Nom de la configuration : 
+Ordinateur : HP_ESPINOS15 (Microsoft Windows NT 10.0.26200.0)
+Application hôte : C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+ID de processus : 38792
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcription démarrée, le fichier de sortie est C:\Users\guyma\Downloads\rendu_TD9_powershell.txt
+PS C:\Users\guyma\labs\esilv-marketpulse-g07-Tryharders> python -c "import json; d = json.load(open('data/sample/bloomberg_reference_sample.json')); print(d['access_mode']); print(d['is_live_bloomberg_output']); print(d['schema_note'])"
+approved_sample
+False
+observation_date/open_value/high_value/low_value/close_value/volume_value ar
+e teaching wrapper keys, not Bloomberg field mnemonics.
+PS C:\Users\guyma\labs\esilv-marketpulse-g07-Tryharders> python -c "import json; d = json.load(open('data/sample/bloomberg_reference_sample.json')); s = d['series'][0]; print(s['provider_identifier'], '->', s['canonical_ticker']); print(len(s['observations'])); print(s['observations'][0]); print(s['observations'][-1]['observation_date'])"
+AAPL US Equity -> AAPL
+21
+{'observation_date': '2026-09-01', 'open_value': 249.2, 'high_value': 251.5,
+ 'low_value': 248, 'close_value': 250, 'volume_value': 38000000}
+2026-09-30
+PS C:\Users\guyma\labs\esilv-marketpulse-g07-Tryharders> python -c "import json; d = json.load(open('data/sample/bloomberg_reference_sample.json')); s = d['series'][1]; print(s['provider_identifier'], '->', s['canonical_ticker']); print(len(s['observations'])); print(s['observations'][0]); print(s['observations'][-1]['observation_date'])"
+2026-09-30
+PS C:\Users\guyma\labs\esilv-marketpulse-g07-Tryharders> Stop-Transcript
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20261127162646
+**********************
