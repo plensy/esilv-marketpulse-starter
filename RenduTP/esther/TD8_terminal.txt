@@ -1,0 +1,142 @@
+Microsoft Windows [Version 10.0.26200.9974]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>git switch main
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>git pull
+remote: Enumerating objects: 29, done.
+remote: Counting objects: 100% (13/13), done.
+remote: Total 29 (delta 13), reused 13 (delta 13), pack-reused 16 (from 1)
+Unpacking objects: 100% (29/29), 2.30 MiB | 6.12 MiB/s, done.
+From https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders
+   8f0d418..3b25b09  main                    -> origin/main
+   8a9d83c..28875be  branchemaelys           -> origin/branchemaelys
+ * [new branch]      docs/add-leopold-report -> origin/docs/add-leopold-report
+Updating 8f0d418..3b25b09
+Fast-forward
+ RenduTP/RenduTP_maelys/TD 7-8 pythonGitLinux.pdf | Bin 0 -> 56607 bytes
+ RenduTP/leopold/TD_Leopold_Bach.docx             | Bin 0 -> 2683515 bytes
+ labs/TD10_BLOOMBERG_PROVIDER.md                  | 974 +++++++++++++++++++++++
+ labs/TD11_DASH_DASHBOARD.md                      | 932 ++++++++++++++++++++++
+ labs/TD12_INTEGRATION_AND_RELEASE.md             | 681 ++++++++++++++++
+ 5 files changed, 2587 insertions(+)
+ create mode 100644 RenduTP/RenduTP_maelys/TD 7-8 pythonGitLinux.pdf
+ create mode 100644 RenduTP/leopold/TD_Leopold_Bach.docx
+ create mode 100644 labs/TD10_BLOOMBERG_PROVIDER.md
+ create mode 100644 labs/TD11_DASH_DASHBOARD.md
+ create mode 100644 labs/TD12_INTEGRATION_AND_RELEASE.md
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        evidence/TD1_TD2_reponse.pdf
+        labs/.ipynb_checkpoints/
+        labs/TD1_reponse.odt
+        labs/TEAM.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+Provider : Yahoo Finance via yfinance
+
+Instrument
+AAPL - Apple Inc.
+Market        : NASDAQ
+Observations  : 23
+First date    : 2026-10-26
+Last date     : 2026-11-25
+First close   : 343.91 USD
+Last close    : 355.58 USD
+Period return : 3.39%
+
+Benchmark
+SP500 - S&P 500
+Market        : US
+Observations  : 23
+First date    : 2026-10-26
+Last date     : 2026-11-25
+First close   : 7676.77
+Last close    : 7182.78
+Period return : -6.43%
+
+Relative performance
+AAPL vs SP500 : +9.83 percentage points
+
+Base 100
+AAPL  : 100.00 -> 103.39
+SP500 : 100.00 -> 93.57
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>python -m pip show yfinance
+Name: yfinance
+Version: 1.8.0
+Summary: Download market data from Yahoo! Finance API
+Home-page: https://github.com/ranaroussi/yfinance
+Author: 
+Author-email: Ran Aroussi <ran@aroussi.com>
+License: Apache-2.0
+Location: C:\Users\esthe\AppData\Local\Python\pythoncore-3.15-64\Lib\site-packages
+Requires: beautifulsoup4, curl_cffi, lxml, numpy, pandas, peewee, platformdirs, protobuf, pytz, requests, websockets
+Required-by: 
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>python -c "import yfinance as yf; print(yf.Ticker('AAPL').history(period='1mo', interval='1d', auto_adjust=False).head())"
+                                 Open        High  ...  Dividends  Stock Splits
+Date                                               ...                         
+2026-10-26 00:00:00-04:00  343.920013  347.089996  ...        0.0           0.0
+2026-10-27 00:00:00-04:00  343.170013  347.779999  ...        0.0           0.0
+2026-10-28 00:00:00-04:00  346.920013  347.179993  ...        0.0           0.0
+2026-10-29 00:00:00-04:00  348.000000  351.429993  ...        0.0           0.0
+2026-10-30 00:00:00-04:00  346.720001  349.190002  ...        0.0           0.0
+
+[5 rows x 8 columns]
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>python -c "import sys; sys.path.insert(0, 'src'); from providers.yahoo_provider import fetch_yahoo_prices; print(fetch_yahoo_prices('AAPL', 'AAPL')[0])"
+{'date': '2026-10-26', 'ticker': 'AAPL', 'open': 343.9200134277344, 'high': 347.0899963378906, 'low': 341.0299987792969, 'close': 343.9100036621094, 'volume': 42743600}
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+Provider : Yahoo Finance via yfinance
+
+Instrument
+AAPL - Apple Inc.
+Market        : NASDAQ
+Observations  : 23
+First date    : 2026-10-26
+Last date     : 2026-11-25
+First close   : 343.91 USD
+Last close    : 355.58 USD
+Period return : 3.39%
+
+Benchmark
+SP500 - S&P 500
+Market        : US
+Observations  : 23
+First date    : 2026-10-26
+Last date     : 2026-11-25
+First close   : 7676.77
+Last close    : 7182.78
+Period return : -6.43%
+
+Relative performance
+AAPL vs SP500 : +9.83 percentage points
+
+Base 100
+AAPL  : 100.00 -> 103.39
+SP500 : 100.00 -> 93.57
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>notepad RenduTP/esther/TD8_terminal.txt
+
+C:\Users\esthe\labs_git_a4\esilv-marketpulse-g07-Tryharders>

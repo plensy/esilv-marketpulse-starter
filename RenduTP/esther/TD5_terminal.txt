@@ -1,0 +1,248 @@
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (esther) $ git switch main
+branch 'main' set up to track 'origin/main'.
+Switched to a new branch 'main'
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git branch archive/td04-local
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ cat TEAM.md
+cat: TEAM.md: No such file or directory
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git branch -d archive/td04-local
+Deleted branch archive/td04-local (was a01ed95).
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git branch archive/td04-local esther
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git merge esther --no-edit
+Auto-merging src/main.py
+CONFLICT (content): Merge conflict in src/main.py
+Automatic merge failed; fix conflicts and then commit the result.
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git checkout --theirs src/main.py
+Updated 1 path from the index
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git add src/main.py
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git commit --no-edit
+[main 83e8770] Merge branch 'esther'
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git status
+On branch main
+Your branch is ahead of 'origin/main' by 8 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git push origin main
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 383 bytes | 383.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders
+   a01ed95..83e8770  main -> main
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git switch main
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git branch archive/td04-local
+fatal: a branch named 'archive/td04-local' already exists
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git remote get-url origin
+https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git switch main
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git push origin main
+Everything up-to-date
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git rev-parse HEAD
+83e8770a2075a7b8ae5fa3aaf23bd262761ffc68
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git rev-parse origin/main
+83e8770a2075a7b8ae5fa3aaf23bd262761ffc68
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (main) $ git switch -c feature/display-market-metadata
+Switched to a new branch 'feature/display-market-metadata'
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git branch
+  archive/td04-local
+  esther
+* feature/display-market-metadata
+  main
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git status
+On branch feature/display-market-metadata
+nothing to commit, working tree clean
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git diff
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git add src/main.py
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git diff --staged
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ code src/main.py
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Market       : NASDAQ
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Market       : US
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git diff
+diff --git a/src/main.py b/src/main.py
+index 9819cdd..96008fd 100644
+--- a/src/main.py
++++ b/src/main.py
+@@ -47,6 +47,7 @@ def display_market_summary(asset, prices, show_currency=True):
+         currency = " " + asset["currency"]
+ 
+     print(f"{asset['ticker']} - {asset['name']}")
++    print(f"Market       : {asset['market']}")
+     print(f"Observations : {len(prices)}")
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ python src/main.py
+=== MarketPulse ===
+
+Market configuration
+Period   : 1 month
+Interval : Daily
+
+Instrument
+AAPL - Apple Inc.
+Market       : NASDAQ
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Market       : US
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git add src/main.py
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git commit -m "feat: display market metadata"
+[feature/display-market-metadata 1e1de45] feat: display market metadata
+ 1 file changed, 1 insertion(+)
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git push -u origin feature/display-market-metadata
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 374 bytes | 374.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'feature/display-market-metadata' on GitHub by visiting:
+remote:      https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders/pull/new/feature/display-market-metadata
+remote: 
+To https://github.com/jeannespinos/esilv-marketpulse-g07-Tryharders
+ * [new branch]      feature/display-market-metadata -> feature/display-market-metadata
+branch 'feature/display-market-metadata' set up to track 'origin/feature/display-market-metadata'.
+@ecetere ➜ /workspaces/esilv-marketpulse-g07-Tryharders (feature/display-market-metadata) $ git switch esther
+Switched to branch 'esther'
+Your branch is up to date with 'origin/esther'.
